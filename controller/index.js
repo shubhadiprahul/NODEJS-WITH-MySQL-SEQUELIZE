@@ -96,13 +96,13 @@ exports.monthlyTurnOver = async(req,res) => {
     let EndDate = "2022-12-11";
     let StartDate = "2022-11-10";
     const list = await wholesaler.findAll({
-        attributes: [[ sequelize.fn('YEAR', sequelize.col('createdAt')), 'data']],
-            //     where: {
-            //         createdAt: {
-            //             [Op.lt]: new Date(endDate),
-            //             [Op.gt]: new Date(startDate)
-            //         }
-            // },
+        // attributes: [[ sequelize.fn('YEAR', sequelize.col('createdAt')), 'data']],
+                where: {
+                    createdAt: {
+                        [Op.lt]: new Date(endDate),
+                        [Op.gt]: new Date(startDate)
+                    }
+            },
             attributes: ["wholesaler_id"]
         })
         const monthlyTrunover = await stock.findAll({
